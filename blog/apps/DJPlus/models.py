@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from tagging.fields import TagField
-from tagging.models import Tag
+#from tagging.fields import TagField
+#from tagging.models import Tag
 import markdown 
 import datetime
 
@@ -39,7 +39,7 @@ class Entry(models.Model):
 	)
 	status = models.IntegerField(choices=STATUS_CHOICES, default=LIVE_STATUS)
 	categories = models.ManyToManyField(Category)
-	tags = TagField()
+	#tags = TagField()
 	excerpt_html = models.TextField(editable=False, blank=True)
 	body_html = models.TextField(editable=False, blank=True)
 	class Meta:
@@ -51,8 +51,8 @@ class Entry(models.Model):
 			self.excerpt_html = md.convert(self.excerpt)
 		super(Entry, self).save(force_insert, force_update)
     
-	def get_tags(self):
-		return Tag.objects.get_for_object(self)
+	#def get_tags(self):
+	#	return Tag.objects.get_for_object(self)
 
 	class Meta:
 		verbose_name_plural = "Posts"
