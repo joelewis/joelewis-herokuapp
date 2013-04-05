@@ -14,10 +14,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+import dj_database_url
+
+
 DATABASES = {
     'default': {
-        'ENGINE': '', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'blog.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -25,6 +28,8 @@ DATABASES = {
     }
 }
 
+#DATABASES['default'] =  dj_database_url.config()
+##
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -129,7 +134,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
      'grappelli',
      'django.contrib.admin',
-     #'tagging',
+     'tagging',
      'markdown',
      'DJPlus',
     # Uncomment the next line to enable admin documentation:
@@ -165,8 +170,7 @@ LOGGING = {
     }
 }
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
