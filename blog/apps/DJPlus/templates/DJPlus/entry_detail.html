@@ -1,0 +1,56 @@
+{% extends "base_entries.html" %}
+{% block title %}{{ block.super }} | {{ object.title }}{% endblock %}
+{% block content %}
+<div id="fb-root"></div>
+
+<script>
+  window.fbAsyncInit = function() {
+  FB.init({
+
+    status     : true, // check login status
+    cookie     : true, // enable cookies to allow the server to access the session
+    xfbml      : true  // parse XFBML
+  });
+};
+
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<h2><a href="{{  object.get_absolute_url }}">{{ object.title }}</a></h2>
+{{ object.body_html|safe }}
+
+<div class="fb-comments" 
+	data-href="{{ object.get_absolute_url }}" 
+	data-num-posts="1" 
+	data-width="900%"></div>
+
+{% endblock %}
+{% block whatis %}
+<p>This is an entry posted to my blog on
+{{ object.pub_date|date:"F j, Y" }}.</p>
+{% if object.categories.count %}
+<p>This entry is part of the
+categor{{ object.categories.count|pluralize:"y,ies" }}
+{% for cat in object.categories.all %}
+
+<a href="{% url DJPlus.views.category_detail cat.slug %}">{{ cat.title }} </a>
+
+{% if forloop.last %}{% else %}
+{% ifequal forloop.revcounter0 1 %}and {% else %}, {% endifequal %}
+{% endif %}
+{% endfor %}
+</p>
+{% else %}
+<p>This entry isn't part of any categories.</p>
+{% endif %}
+{% if object.tags %}
+<p>Tagged: {{ object.tags }}</p> 
+{% endif %}
+{% endblock %}
+

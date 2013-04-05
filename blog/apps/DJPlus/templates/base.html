@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Joe's Scribbles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="/media/css/bootstrap.css" rel="stylesheet">
+    <link href="/media/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/media/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="/media/css/jquery.sidr.light.css">
+
+        <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+        padding-left: 100px;
+        padding-right: 100px;
+        background: url('/media/img/grids.gif');
+      }
+
+   /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      #wrap > .container {
+        padding-top: 60px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+
+      code {
+        font-size: 80%;
+      }
+    </style>
+
+  </head>
+  <body>
+  	<div id="wrap">
+  	<div class="container-fluid">
+  		
+
+	 <div class="row-fluid">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="{% url DJPlus_entry_archive_index %}" data-toggle="tooltip" title="Home"><i class="icon-home icon-black" ></i></a></li>
+          <li class="active"><a id="sidebar" href="#sidr" data-toggle="tooltip" title="Posts"><i class="icon-list icon-black"></i></a></li>
+          <li class="active"><a href="{% url DJPlus_link_archive_index %}" data-toggle="tooltip" title="Links"> <i class="icon-bookmark icon-black"></i> </a></li>
+          <li class="active"><a href="http://joelevis.wordpress.com/about" data-toggle="tooltip" title="About me"><i class="icon-user icon-black"></i></a></li>
+          <li class="active"><a href="http://github.com/joelewis" data-toggle="tooltip" title="Code"><i class="icon-exclamation-sign icon-black"></i></a></li>
+          <li class="active"><a href="http://github.com/joelewis" data-toggle="tooltip" title="Website"><i class="icon-globe icon-black"></i></a></li>
+          <li class="active"><a href="http://joelevis.wordpress.com" data-toggle="tooltip" title="Old blog"><i class="icon-fast-backward icon-black"></i></a></li>
+
+        </ul>
+ 	</div><!--row-fluid-->
+      <hr>
+   <div class="hero-unit">
+            <h1> Joe's Blog</h1>
+            <p> Joe is a Developer, Computer Engineer and Student based out of Chennai. He loves Cats and Computers since childhood and he spends his time coding stuff for love and profit. He writes his thoughts <a href="/" class="btn btn-primary btn-small">here</a>. You can catch him facebooking <a href="http://fb.com/lewjoe" class="btn btn-primary btn-small">here</a> or see his works <a href="https://github.com/joelewis" class="btn btn-primary btn-small">here </a> or learn more about him <a href="#" class="btn btn-primary btn-small">here</a>
+          </div><!--hero-unit-->
+<div id="content"  class="content">
+{% block content %}
+{% endblock %}
+</div><!-- content-->
+<div id="sidr">
+<h3>Where Are You?</h3>
+<ul class="nav">
+<li id="main-nav-entries">
+	<a href="{% url DJPlus_entry_archive_index %}">Posts</a>
+	<ul id="main-nav-year">
+		{% for i in month_list %}
+		<li> <a href="{% url DJPlus_entry_archive_month i|date:'Y',i|date:'b' %}">{{ i|date:"F"}}({{ i|date:"Y" }})</li>
+		{% endfor %}
+	</ul>
+</li>
+<li id="main-nav-links">
+<a href="{% url DJPlus_link_archive_index %}">Links</a>
+</li>
+<!--
+<li id="main-nav-categories">
+<a href="{% url DJPlus_entry_archive_index %}">Categories</a>
+<ul id="main-nav-cat">
+	{% for i in category_list %}
+	<li><a href="{% url DJPlus.views.category_detail i.slug %}">{{ i.title }} </a></li>
+	{% endfor %}
+</ul>
+</li>
+<li id="main-nav-tags">
+<a href="{% url DJPlus_entry_archive_index %}">Tags</a>
+<ul id="main-nav-tag">
+	{% for i in tag_list %}
+	<li><a href="{% url DJPlus.views.tag_detail i.name %}">{{ i.name }}</a></li>
+	{% endfor %}
+</ul>
+</li> -->
+</ul>
+<span id="whatis">
+<h3 >What is this?</h3>
+{% block whatis %}
+
+{% endblock %}
+</span>
+</div><!-- sidr-->
+</div> <!-- container -->
+
+<div id="push"></div>
+</div>
+
+<div id="footer">
+      <div class="container">
+        <p class="muted credit"> This platform was written overnight by <a href="http://joelewis.github.com">Joe</a> using a lot of boredom and various opensource tools <a href="http://django-project.org">Django</a> <a href="http://twitter.github.com/bootstrap"> Bootstrap(Twitter) </a> <a href="http://github.com/gists"> Gists </a> <a href="www.berriart.com/sidr/"> Sidr </a></p>
+      </div>
+</div>
+ <!-- Include jQuery -->
+    <script src="/media/js/jquery.js"></script>
+    <script src="/media/js/bootstrap.min.js"></script>
+    <script src="/media/js/bootstrap-transition.js"></script>
+    <script src="/media/js/bootstrap-alert.js"></script>
+    <script src="/media/js/bootstrap-modal.js"></script>
+    <script src="/media/js/bootstrap-dropdown.js"></script>
+    <script src="/media/js/bootstrap-scrollspy.js"></script>
+    <script src="/media/js/bootstrap-tab.js"></script>
+    <script src="/media/js/bootstrap-tooltip.js"></script>
+    <script src="/media/js/bootstrap-popover.js"></script>
+    <script src="/media/js/bootstrap-button.js"></script>
+    <script src="/media/js/bootstrap-collapse.js"></script>
+    <script src="/media/js/bootstrap-carousel.js"></script>
+    <script src="/media/js/bootstrap-typeahead.js"></script>
+    <!-- Include the Sidr JS -->
+    <script src="/media/js/jquery.sidr.min.js"></script>
+    <script>
+    	$(document).ready(function() {
+    		$('#sidebar').sidr();
+    		$('.active').tooltip();
+    		
+    	});
+
+    </script>
+
+
+
+</body>
+</html>

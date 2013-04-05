@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | Latest Posts {% endblock %}
+{% block content %}
+{% for entry in latest %}
+
+
+<a class="btn btn-success btn-large" data-toggle="tooltip" title='{{ entry.pub_date|date:"F j, Y" }}' href="{{ entry.get_absolute_url }}" style="text-decoration:none; margin:5px;">
+
+	{{ entry.title }}
+
+</a>
+
+
+<!--
+{% if entry.excerpt_html %}
+{{ entry.excerpt_html|safe }}
+{% else %}
+{{ entry.body_html|truncatewords_html:"0"|safe  }}<a href="{{ entry.get_absolute_url }}">... read more</a>
+{% endif %} -->
+
+
+{% endfor %}
+{% endblock %}
+
+{% block whatis %}
+<!--
+<p> My Latest {{latest.count}} posts </p>
+
+{% load DJPlus_tags %}
+ <h3>Recent</h3>
+<ul>
+{% get_latest_content DJPlus.Entry 2 as latest_entries %}
+{% for entry in latest_entries %}
+<li> 
+<a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>,
+<small>posted {{ entry.pub_date|timesince }} ago.</small>
+</li>
+{% endfor %}
+</ul> 
+-->
+{% endblock %}

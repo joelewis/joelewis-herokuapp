@@ -1,0 +1,19 @@
+{% extends "base_tags.html" %}
+{% block title %}
+{{ block.super }} | Entries in {{ tag }}
+{% endblock %}
+{% block content %}
+{% for entry in object_list %}
+<h2>{{ entry.title }}</h2>
+<p>{{ entry.pub_date|date:"F j, Y" }}</p>
+{% if entry.excerpt_html %}
+{{ entry.excerpt_html|safe }}
+{% else %}
+{{ entry.body_html|truncatewords_html:"50"|safe  }}<a href="{{ entry.get_absolute_url }}">... read more</a>
+{% endif %}
+{% endfor %}
+{% endblock %}
+{% block whatis %}
+<p>This is a list of entries published in my blog in <a href="{% url DJPlus.views.tag_detail tag.name %}">{{  tag }} </a>
+</p>
+{% endblock %}
