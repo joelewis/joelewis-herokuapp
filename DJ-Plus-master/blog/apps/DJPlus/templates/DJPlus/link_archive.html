@@ -1,0 +1,17 @@
+{% extends "base_links.html" %}
+{% block title %}{{ block.super }} | Links {% endblock %}
+
+{% block content %}
+{% for link in latest %}
+<h2><a href="{{ link.url }}" style="text-decoration:none;">{{ link.title }}</a></h2>
+<p>{{ link.pub_date|date:"F j, Y" }}</p>
+{% if link.description %}
+{{ link.description_html|safe }}
+{% endif %}
+<p>URL:<a href="{{ link.url }}">{{link.url}}</a></p>
+{% endfor %}
+{% endblock %}
+
+{% block whatis %}
+<p> My Latest {{latest.count}} link </p>
+{% endblock %}

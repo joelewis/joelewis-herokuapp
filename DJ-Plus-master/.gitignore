@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+*.pyc
+
+*~
+=======
+pom.xml
+*jar
+/lib/
+/classes/
+.lein-deps-sum
+>>>>>>> 0f75a742e81b24b8eff43aa187ed829d56e00302
