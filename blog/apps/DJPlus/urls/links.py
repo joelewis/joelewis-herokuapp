@@ -1,13 +1,11 @@
 from django.conf.urls import *
 from DJPlus.models import Link,Entry,Category
-from tagging.models import Tag
+#from tagging.models import Tag
 link_info_dict = {
 	'queryset': Link.objects.all(),
 	'date_field': 'pub_date',
 	'extra_context' : {"month_list" : Entry.objects.filter().dates('pub_date','month'),
-					   "category_list" : Category.objects.all(),
-					   "tag_list" : Tag.objects.all()}
-			       	  }
+					   "category_list" : Category.objects.all() }
 
 urlpatterns = patterns('',
 	url(r'^$', 'django.views.generic.date_based.archive_index',link_info_dict,'DJPlus_link_archive_index'),

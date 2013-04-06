@@ -2,9 +2,9 @@ from django.shortcuts import render_to_response
 from DJPlus.models import *
 import datetime, time
 from django.views.generic.list_detail import object_list
-from tagging.views import tagged_object_list
+#from tagging.views import tagged_object_list
 from django.views.generic.dates import YearArchiveView
-from tagging.models import TaggedItem
+#from tagging.models import TaggedItem
 def entries_index(request):
 	return render_to_response('entry_index.html',{ 'entry_list': Entry.objects.filter(status==LIVE_STATUS) })
 def entry_detail(request, year, month, day, slug):
@@ -26,10 +26,10 @@ def category_detail(request, slug):
 		category = Category.objects.get(slug=slug)
 	except Category.DoesNotExist:
 		raise Http404
-	return object_list(request, queryset=category.entry_set.all(), extra_context={"month_list" : Entry.objects.filter().dates('pub_date','month'),"category_list": Category.objects.all(), "ct":category, "tag_list" : Tag.objects.all()})
+	return object_list(request, queryset=category.entry_set.all(), extra_context={"month_list" : Entry.objects.filter().dates('pub_date','month'),"category_list": Category.objects.all(), "ct":category})
 
-def tag_detail(request, tag):
-	return tagged_object_list(request, queryset_or_model=Entry.objects.all(), tag=tag, extra_context={"month_list" : Entry.objects.filter().dates('pub_date','month'),"category_list": Category.objects.all(), "tag_list" : Tag.objects.all()},template_name="DJPlus/tag_list.html")
+#def tag_detail(request, tag):
+#	return tagged_object_list(request, queryset_or_model=Entry.objects.all(), tag=tag, extra_context={"month_list" : Entry.objects.filter().dates('pub_date','month'),"category_list": Category.objects.all(), },template_name="DJPlus/tag_list.html")
 		
 
 														

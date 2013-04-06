@@ -2,7 +2,7 @@ from django.conf.urls import *
 from DJPlus.models import Entry, Category
 from django.views.generic import YearArchiveView
 from datetime import datetime
-from tagging.models import Tag
+#from tagging.models import Tag
 
 date_list_utc = Entry.objects.filter().dates('pub_date','month')
 date_list = []
@@ -16,7 +16,7 @@ entry_info_dict = {
 	'date_field': 'pub_date',
 	'extra_context' : {"month_list" : date_list,
 					   "category_list" : Category.objects.all(),
-					   "tag_list" : Tag.objects.all()}
+					   }
 	}
 
 urlpatterns = patterns('',
