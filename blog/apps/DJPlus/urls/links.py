@@ -6,6 +6,7 @@ link_info_dict = {
 	'date_field': 'pub_date',
 	'extra_context' : {"month_list" : Entry.objects.filter().dates('pub_date','month'),
 					   "category_list" : Category.objects.all() }
+	}
 
 urlpatterns = patterns('',
 	url(r'^$', 'django.views.generic.date_based.archive_index',link_info_dict,'DJPlus_link_archive_index'),
