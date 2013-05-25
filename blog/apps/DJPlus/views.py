@@ -31,7 +31,8 @@ def category_detail(request, slug):
 #def tag_detail(request, tag):
 #	return tagged_object_list(request, queryset_or_model=Entry.objects.all(), tag=tag, extra_context={"month_list" : Entry.objects.filter().dates('pub_date','month'),"category_list": Category.objects.all(), },template_name="DJPlus/tag_list.html")
 		
-
+def get_postid(request):
+	return HttpResponse(len(Entry.objects.all()))
 														
 class EntryByYearView(YearArchiveView):
     template_name = "DJPlus/archive_year.html"
