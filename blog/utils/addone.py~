@@ -11,7 +11,7 @@ def convert(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1 \2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1 \2', s1)
 
-conn = sqlite3.connect('../../blog.db')
+conn = sqlite3.connect('blog.db')
 c = conn.cursor()
 postid = int(urllib2.urlopen('http://joelewis.herokuapp.com/getpid').read())
 
