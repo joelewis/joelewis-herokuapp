@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response
 from DJPlus.models import *
+from django.http import HttpResponse
 import datetime, time
 from django.views.generic.list_detail import object_list
 #from tagging.views import tagged_object_list
