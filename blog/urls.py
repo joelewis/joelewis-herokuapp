@@ -18,5 +18,5 @@ urlpatterns = patterns('',
 	 url(r'^blog/tags/', include('DJPlus.urls.tags')),
 	 url(r'^blog/', include('DJPlus.urls.entries')),
 	 url(r'^media/(?P<path>.*)$','django.views.static.serve',{ 'document_root': settings.MEDIA_ROOT }),
-     url(r'^getpid/', 'blog.views.get_postid'),
+     url(r'^getpid/', 'DJPlus.views.get_postid'),
 )
